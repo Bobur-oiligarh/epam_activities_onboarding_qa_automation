@@ -15,7 +15,7 @@ class AWSEC2:
     def __init__(self, instance_id: str):
         """
         Initializes an aws ec2 instance with excepted its id
-        :param instance_id: str
+        :param instance_id: string
         """
         self.ec2 = boto3.resource('ec2', region_name='ap-south-1')
         self.instance = self.ec2.Instance(instance_id)

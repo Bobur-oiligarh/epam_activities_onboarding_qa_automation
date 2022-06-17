@@ -2,7 +2,7 @@ from pytest_check import check_func
 from test_packages.models.aws_instance_models import AWSEC2
 
 """
-Module with several asserts for test EC2 instances
+Module with several asserts for test EC2 instance
 """
 
 

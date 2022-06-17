@@ -11,6 +11,5 @@ state: 'running'
 security_group_allowed_ports:
   FromPort: [22]
   ToPort: [22]
-
 network_interface_tag: "Linux-test"
 network_interface_ip_address: ""

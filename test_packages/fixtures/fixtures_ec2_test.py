@@ -1,5 +1,5 @@
 """
-Fixtures for executing tests EC2
+Fixtures for executing tests forEC2 
 """
 from typing import Dict
 from test_packages.models.aws_instance_models import AWSEC2, NetworkInterface, AWSSecurityGroups

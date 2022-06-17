@@ -1,5 +1,5 @@
 """
-Module contains tests of EC2 instances
+Module contains tests for EC2 instances
 """
 
 from test_packages.asserts.asserts import soft_check, soft_check_instance_exist
