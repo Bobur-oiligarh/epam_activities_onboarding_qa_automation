@@ -1,11 +1,10 @@
 """
-Fixtures for executing tests forEC2 
+Fixtures for executing tests_ec2 forEC2
 """
 from typing import Dict
-from test_packages.models.aws_instance_models import AWSEC2, NetworkInterface, AWSSecurityGroups
+from test_framework.models.aws_ec2_resouces import AWSEC2, NetworkInterface, AWSSecurityGroups
 import yaml
 import pytest
-import boto3
 
 
 @pytest.fixture()
@@ -34,8 +33,9 @@ def get_expected_result() -> Dict:
     This tool extracts ec2 datas from .yaml file to python readable type: dictionary
     :return: dictionary filled with file content
     """
-    file_abs_path = '/home/bobur/LocalRepositories/onboarding-qa/test_packages/tests'
-    file_name = 'aws_instances_datas.yaml'
+    file_abs_path = '/home/bobur/LocalRepositories/' \
+                    'onboarding-qa/test_framework/tests_ec2'
+    file_name = 'ec2_instance_data.yaml'
     with open(f"{file_abs_path}/{file_name}") as file:
         documents = yaml.load(file, Loader=yaml.SafeLoader)
     return documents

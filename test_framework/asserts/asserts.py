@@ -1,5 +1,7 @@
+from typing import Dict
+
 from pytest_check import check_func
-from test_packages.models.aws_instance_models import AWSEC2
+from test_framework.models.aws_ec2_resouces import AWSEC2
 
 """
 Module with several asserts for test EC2 instance
