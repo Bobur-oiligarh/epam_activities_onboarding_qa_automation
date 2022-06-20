@@ -1,8 +1,9 @@
-"""
-Fixtures for executing tests_ec2 forEC2
-"""
+"""Fixtures for executing tests for EC2."""
+import os
+import logging
 from typing import Dict
-from test_framework.models.aws_ec2_resouces import AWSEC2, NetworkInterface, AWSSecurityGroups
+from botocore.exceptions import ClientError
+from models.aws_ec2_resouces import AWSEC2, NetworkInterface, AWSSecurityGroups
 import yaml
 import pytest
 
@@ -28,15 +29,15 @@ def get_ec2_network_interface_id(get_expected_result) -> str:
 
 
 @pytest.fixture()
-def get_expected_result() -> Dict:
+def get_expected_result(request) -> Dict:
     """
     This tool extracts ec2 datas from .yaml file to python readable type: dictionary
+    Here uses the request fixture to get the full path of .yaml file
     :return: dictionary filled with file content
     """
-    file_abs_path = '/home/bobur/LocalRepositories/' \
-                    'onboarding-qa/test_framework/tests_ec2'
-    file_name = 'ec2_instance_data.yaml'
-    with open(f"{file_abs_path}/{file_name}") as file:
+    dir_path = os.path.dirname(request.module.__file__)
+    file_path = os.path.join(dir_path, 'ec2_instance_data.yaml')
+    with open(file_path) as file:
         documents = yaml.load(file, Loader=yaml.SafeLoader)
     return documents
 
@@ -48,7 +49,11 @@ def get_actual_result(get_ec2_instance_id: str) -> AWSEC2:
     :param get_ec2_instance_id: fixture which provides instance id
     :return: AWSEC2 object
     """
-    return AWSEC2(get_ec2_instance_id)
+    try:
+        return AWSEC2(get_ec2_instance_id)
+    except ClientError as error:
+        logging.error(f'Cant open EC2 instance: {error}')
+    return None
 
 
 @pytest.fixture()
@@ -71,3 +76,5 @@ def get_actual_allowed_ports(get_actual_result: AWSEC2) -> AWSSecurityGroups:
     """
     security_group_id = get_actual_result.security_group_id
     return AWSSecurityGroups(security_group_id)
+
+

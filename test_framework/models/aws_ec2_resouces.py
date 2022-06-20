@@ -2,8 +2,7 @@ from typing import Dict
 
 import boto3
 
-"""
-Module with class AWS to connect with origin aws ec2 instance using boto3
+"""Module with class AWS to connect with origin aws ec2 instance using boto3.
 """
 
 
@@ -50,7 +49,7 @@ class NetworkInterface:
 class AWSSecurityGroups:
     """
     Provides an original AWS EC2 Security Group
-    by initializing with it with its id
+    by initializing with it with its id.
     """
 
     def __init__(self, group_id: str):
