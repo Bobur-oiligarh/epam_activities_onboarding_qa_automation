@@ -1,0 +1,15 @@
+id: "i-0d628ea9ecdfcbf50"
+network_interface_id: "eni-036167480aee6fbd1"
+image_id: "ami-079b5e5b3971bd10d"
+instance_type: "t2.micro"
+tags:
+  Key: 'Name'
+  Value: "Linux-test"
+key_name: "onboarding_access"
+private_ip_address: "172.31.10.186"
+state: 'running'
+security_group_allowed_ports:
+  FromPort: [22]
+  ToPort: [22]
+network_interface_tag: "Linux-test"
+network_interface_ip_address: ""
