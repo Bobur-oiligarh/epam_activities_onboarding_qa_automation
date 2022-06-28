@@ -1,3 +1,4 @@
+
 """Module with several asserts for test EC2 instance.
 """
 
