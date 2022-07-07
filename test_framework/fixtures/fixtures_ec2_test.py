@@ -1,31 +1,13 @@
-"""Fixtures for executing tests for EC2."""
+"""Fixtures to executing tests for EC2."""
 import os
 import logging
 from typing import Dict
 from botocore.exceptions import ClientError
-from models.aws_ec2_resouces import AWSEC2, NetworkInterface, AWSSecurityGroups
+from test_framework.models.aws_ec2_models.aws_ec2_resouces import AWSEC2, NetworkInterface, AWSSecurityGroups
 import yaml
 import pytest
 
-
-@pytest.fixture()
-def get_ec2_instance_id(get_expected_result) -> str:
-    """
-    Fixture to get an aws instance id, which is tested
-    :param get_expected_result: fixture which provides instance id
-    :return: string
-    """
-    return get_expected_result['id']
-
-
-@pytest.fixture()
-def get_ec2_network_interface_id(get_expected_result) -> str:
-    """
-    Fixture to get an aws instance id, which is tested
-    :param get_expected_result: fixture which provides instance id
-    :return: string
-    """
-    return get_expected_result['network_interface_id']
+EC2_DATA_FILE = 'ec2_instance_data.yaml'
 
 
 @pytest.fixture()
@@ -36,10 +18,29 @@ def get_expected_result(request) -> Dict:
     :return: dictionary filled with file content
     """
     dir_path = os.path.dirname(request.module.__file__)
-    file_path = os.path.join(dir_path, 'ec2_instance_data.yaml')
+    file_path = os.path.join(dir_path, EC2_DATA_FILE)
     with open(file_path) as file:
         documents = yaml.load(file, Loader=yaml.SafeLoader)
     return documents
+
+
+@pytest.fixture()
+def get_ec2_instance_id(get_expected_result) -> str:
+    """Fixture to get an aws instance id, which is tested
+    :param get_expected_result: fixture which provides instance id
+    :return: string
+    """
+    return get_expected_result.get('id')
+
+
+@pytest.fixture()
+def get_ec2_network_interface_id(get_expected_result) -> str:
+    """
+    Fixture to get an aws instance id, which is tested
+    :param get_expected_result: fixture which provides instance id
+    :return: string
+    """
+    return get_expected_result.get('network_interface_id')
 
 
 @pytest.fixture()
@@ -76,5 +77,3 @@ def get_actual_allowed_ports(get_actual_result: AWSEC2) -> AWSSecurityGroups:
     """
     security_group_id = get_actual_result.security_group_id
     return AWSSecurityGroups(security_group_id)
-
-

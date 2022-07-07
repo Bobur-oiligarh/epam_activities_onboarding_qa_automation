@@ -1,5 +1,4 @@
 from typing import Dict
-
 import boto3
 
 """Module with class AWS to connect with origin aws ec2 instance using boto3.
@@ -55,10 +54,11 @@ class AWSSecurityGroups:
     def __init__(self, group_id: str):
         """
         Initializes EC2 Security Group by its id
-        :param group_id: securityg roup id
+        :param group_id: security group id
         """
         self.ec2 = boto3.resource('ec2', region_name='ap-south-1')
         self.security_group = self.ec2.SecurityGroup(group_id)
+        self.allowed_ports = {}
 
     @property
     def get_allowed_ports(self) -> Dict:
