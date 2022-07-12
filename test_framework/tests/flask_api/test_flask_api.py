@@ -1,28 +1,24 @@
-"""Contains several tests for flask api endpoint testing"""
+"""Contains several tests for flask api endpoint testing."""
 from requests.status_codes import codes
-
-from test_framework.fixtures.fixtures_flask_api import get_data_flask_api_file, \
-    get_response_from_root, get_response_from_health
-
-
-def test_root_status(get_response_from_root):
-    """Validate status_code of root endpoint"""
-    status_code = get_response_from_root.status_code
-    assert status_code == codes.ok
+from test_framework.fixtures.fixtures_flask_api import flask_app, root_json, \
+    root_status, health_status, health_json
 
 
-def test_root_json(get_response_from_root):
-    """Validate  the presence of json in root endpoint response"""
-    assert get_response_from_root.json()
+def test_root_status(root_status):
+    """Validates status_code of response to root page."""
+    assert root_status == codes.ok
 
 
-def test_health_status(get_response_from_health):
-    """Validate status_code of root endpoint"""
-    status_code = get_response_from_health.status_code
-    assert status_code == codes.ok
+def test_root_json(root_json):
+    """Validates presence of json in response to root page."""
+    assert root_json
 
 
-def test_health_json(get_response_from_health):
-    """Validate  the presence of json in health endpoint response"""
-    assert get_response_from_health.json()
+def test_health_status(health_status):
+    """Validates status_code of response to health page."""
+    assert health_status == codes.ok
 
+
+def test_health_json(health_json):
+    """Validates presence of json in response to health page."""
+    assert health_json

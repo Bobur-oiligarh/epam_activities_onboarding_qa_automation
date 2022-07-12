@@ -1,48 +1,59 @@
 """The module with three fixtures to test flask api endpoints"""
-import os
 from typing import Dict
 
 import pytest
-import yaml
-import requests
-from requests import Response
-
-FLASK_API_EXPECTED_DATA_FILE = 'flask_api_data.yaml'
+from test_framework.clients.flask_client import FlaskClient
+from test_framework.clients.http_responce import HttpResponse
+from test_framework.constants import FlaskConstant
 
 
 @pytest.fixture()
-def get_data_flask_api_file(request) -> Dict:
-    """This tool extracts ec2 datas from .yaml file to python readable type: dictionary
-    Here uses the request fixture to get the full path of .yaml file
-
-    :return: dictionary filled with file content
-    """
-    dir_path = os.path.dirname(request.module.__file__)
-    file_path = os.path.join(dir_path, FLASK_API_EXPECTED_DATA_FILE)
-    with open(file_path) as file:
-        documents = yaml.load(file, Loader=yaml.SafeLoader)
-    return documents
+def flask_app() -> FlaskClient:
+    """Creates an instance of FlaskClient."""
+    return FlaskClient(urls_set=FlaskConstant())
 
 
 @pytest.fixture()
-def get_response_from_root(get_data_flask_api_file) -> Response:
-    """This fixture gets request for root endpoint and return its response
-
-    :param get_data_flask_api_file: fixture which gives dictionary from data.yaml
-    :return: Response object
+def root_status(flask_app) -> int:
+    """Fixture which returns status_code of request to root.
+    :param: flask_app: fixture with FlaskClient object.
+    :return: status_code of root page response.
     """
-    response = requests.get(get_data_flask_api_file['root']['link'])
-    return response
+    root_response = flask_app.root_request()
+    status = HttpResponse(root_response).get_status()
+    return status
 
 
 @pytest.fixture()
-def get_response_from_health(get_data_flask_api_file) -> Response:
-    """This fixture gets request for health endpoint and return its response
+def root_json(flask_app) -> Dict:
+    """Fixture which returns json of content of root page response.
 
-    :param get_data_flask_api_file: fixture which gives dictionary from data.yaml
-    :return: Response object
+    :param: flask_app: fixture, FlaskClient object.
+    :return: Dictionary. json of response of request to root page.
     """
-    response = requests.get(get_data_flask_api_file['health']['link'])
-    return response
+    root_response = flask_app.root_request()
+    json = HttpResponse(root_response).get_json()
+    return json
 
 
+@pytest.fixture()
+def health_status(flask_app) -> int:
+    """Fixture which returns status_code of request to health page.
+    :param: flask_app: fixture with FlaskClient object.
+    :return: status_code of response of health page.
+    """
+    health_response = flask_app.health_request()
+    status = HttpResponse(health_response).get_status()
+    return status
+
+
+@pytest.fixture()
+def health_json(flask_app) -> Dict:
+    """Fixture which returns json of content of health page response.
+
+    :param: flask_app: fixture, FlaskClient object.
+    :return: Dictionary. json of response of request to health page.
+    """
+    health_response = flask_app.health_request()
+    json = HttpResponse(health_response).get_json()
+    return json
