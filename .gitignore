@@ -1,0 +1,14 @@
+__init__.py
+.idea/
+ansible/
+boto3/
+Terraform/
+fixture_host_test.py
+fixtures_ec2_test.py
+models/
+.pytest_cache/
+aws/
+host/
+
+
+
