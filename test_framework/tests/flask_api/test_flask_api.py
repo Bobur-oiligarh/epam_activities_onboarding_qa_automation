@@ -3,9 +3,9 @@ import sys
 from requests.status_codes import codes
 from test_framework.fixtures.fixtures_flask_api import flask_app, root_json, \
    root_status, health_status, health_json
-from os.path import dirname, abspath
-d = dirname(dirname(abspath(__file__)))
-sys.path.append(d)
+# from os.path import dirname, abspath
+# d = dirname(dirname(abspath(__file__)))
+# sys.path.append(d)
 
 
 def test_root_status(root_status):
