@@ -4,7 +4,7 @@ from requests.status_codes import codes
 from test_framework.fixtures.fixtures_flask_api import flask_app, root_json, \
    root_status, health_status, health_json
 from os.path import dirname, abspath
-d = dirname(dirname(dirname(abspath(__file__))))
+d = dirname(dirname(abspath(__file__)))
 sys.path.append(d)
 
 
