@@ -1,4 +1,4 @@
-ansible==5.9.0
+ansible
 ansible-core==2.12.6
 awscli==1.25.2
 boto3==1.24.2
