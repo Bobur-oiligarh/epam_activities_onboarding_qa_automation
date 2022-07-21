@@ -1,16 +1,4 @@
-awscli==1.25.2
-boto3==1.24.2
-botocore==1.27.2
-httplib2==0.20.2
-packaging==21.3
 pytest==7.1.2
 pytest-testinfra==6.8.0
 pytest_check==1.0.5
-python-apt==2.3.0+ubuntu2
-python-dateutil==2.8.1
-python-debian===0.1.43ubuntu1
-PyYAML==5.4.1
-requests==2.25.1
-urllib3==1.26.5
-virtualenv==20.14.1
-zipp==1.0.0
+
