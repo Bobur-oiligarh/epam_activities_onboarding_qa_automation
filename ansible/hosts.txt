@@ -1,4 +1,0 @@
-[ec2_servers]
-docker-flask   ansible_host=3.110.118.161   ansible_user=ec2-user
-
-

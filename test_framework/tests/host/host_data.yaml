@@ -1,7 +1,0 @@
-user: "ec2-user"
-host_ip: "3.7.73.92"
-path_to_ssh_config: "/home/bobur/.ssh/config"
-distribution: "amzn"
-package_name: "docker"
-docker_container_name: "flask_api"
-flask_api_socket_listening_port: "5000"
