@@ -1,7 +1,7 @@
 """Contains several tests for flask api endpoint testing."""
 from requests.status_codes import codes
 from test_framework.fixtures.fixtures_flask_api import flask_app, root_json, \
-    root_status, health_status, health_json
+   root_status, health_status, health_json
 
 
 def test_root_status(root_status):
