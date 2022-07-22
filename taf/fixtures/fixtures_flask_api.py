@@ -2,9 +2,9 @@
 from typing import Dict
 
 import pytest
-from test_framework.clients.flask_client import FlaskClient
-from test_framework.clients.http_responce import HttpResponse
-from test_framework.constants import FlaskConstant
+from taf.clients.flask_client import FlaskClient
+from taf.clients.http_responce import HttpResponse
+from taf.constants import FlaskConstant
 
 
 @pytest.fixture()

@@ -1,7 +1,7 @@
 """Contains several tests for flask api endpoint testing."""
 import sys
 from requests.status_codes import codes
-from test_framework.fixtures.fixtures_flask_api import flask_app, root_json, \
+from taf.fixtures.fixtures_flask_api import flask_app, root_json, \
    root_status, health_status, health_json
 # from os.path import dirname, abspath
 # d = dirname(dirname(abspath(__file__)))

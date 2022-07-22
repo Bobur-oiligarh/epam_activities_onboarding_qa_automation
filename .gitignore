@@ -8,6 +8,7 @@ models/
 .pytest_cache/
 aws/
 host/
+__pycache__/
 
 
 

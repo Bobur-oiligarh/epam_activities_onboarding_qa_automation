@@ -1,7 +1,7 @@
 """Contains FlaskClient class."""
 from requests import Response
-from test_framework.clients.http_client import HttpClient
-from test_framework.constants import FlaskConstant
+from taf.clients.http_client import HttpClient
+from taf.constants import FlaskConstant
 
 
 class FlaskClient(HttpClient):
